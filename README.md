@@ -12,3 +12,4 @@ Some notes:
 If you hate it: Make a PR.
 - The structure is messy. I know. Once again: PR it if you hate it. Help me help...us!
 - I'm happy to explain anything. Just please use Github Issues for questions / concerns. Discord messages might be fine, depending on the scale/scope.
+- Signing key: You'll probably have to generate and sign the assembly with your own key. Disable this if you want - but i'm going to continue to sign with my key so folk know it's *my version*.
