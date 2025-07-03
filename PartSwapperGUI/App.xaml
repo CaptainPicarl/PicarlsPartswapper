@@ -1,0 +1,267 @@
+﻿<Application x:Class="PartSwapperGUI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PartSwapperGUI.PartSwapper2024"
+             xmlns:partSwapper="clr-namespace:PartSwapperXMLSE;assembly=PartSwapperXMLSE"
+             xmlns:ScottPlot="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
+             StartupUri="PartSwapper2024/MainWindow2024.xaml">
+    <Application.Resources>
+        <Style TargetType="Border" x:Key="PSCenterColumnBorder">
+            <Setter Property="BorderBrush" Value="#FFE5820B"/>
+            <Setter Property="Grid.RowSpan" Value="3"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderThickness" Value="15"/>
+        </Style>
+        <Style TargetType="Border" x:Key="InternalBorder">
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Border" x:Key="InternalBorder2">
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="Background" Value="DimGray"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="40"/>
+
+        </Style>
+        <Style TargetType="Border" x:Key="StatusBorder">
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="BorderBrush" Value="DimGray" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Background" Value="DarkGray"/>
+        </Style>
+        <Style TargetType="Border" x:Key="ButtonBorderStyle">
+            <Setter Property="Width" Value="200" />
+        </Style>
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        <Style TargetType="Button" x:Key="ButtonStyle2">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Background" Value="DarkGray"/>
+
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Label" x:Key="PSLabelStyle">
+            <Setter Property="FontFamily" Value="OCR A Extended" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ListBox" x:Key="PSListboxStyle">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Background" Value="Aquamarine"/>
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ListBox" x:Key="PSListboxStyle2">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Background" Value="Aquamarine"/>
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+        </Style>
+        <Style TargetType="ListBox" x:Key="PSListboxStyle3">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Background" Value="Aquamarine"/>
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="5"/>
+        </Style>
+        <Style TargetType="StackPanel" x:Key="PSHorizontalStackPanel">
+
+        </Style>
+        <Style TargetType="TabControl" x:Key="PSTabControlStyle">
+            <Setter Property="Background" Value="LightSlateGray"/>
+            <Setter Property="Foreground" Value="LightSlateGray"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Setter Property="TabStripPlacement" Value="Top"/>
+        </Style>
+        <Style TargetType="TabItem" x:Key="PSTabItemStyle">
+            <Setter Property="Background" Value="OrangeRed" />
+            <Setter Property="Foreground" Value="Orange" />
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+
+                        <Border Name="tabBorder" CornerRadius="15" Background="Gray">
+
+                            <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        ContentSource="Header"
+                                        Width="200"
+                                        Height="50"
+                                        Margin="2"
+                                        
+                                       />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="tabBorder" Property="Background" Value="Yellow"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBox" x:Key="OptionsTextBox">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Background" Value="Aquamarine"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="PartswapperTitleTextBlock">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Orange"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="PartswapperTitleTextBlock2">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Orange"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="PSTextBlockStyle1">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Orange"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="PSTextBlockStyle2">
+            <Setter Property="FontFamily" Value="Stencil"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="FontStretch" Value="UltraCondensed"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="PSTextBlockStyle3">
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Stencil"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="GreenYellow"/>
+            <Setter Property="TextTrimming" Value="WordEllipsis"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="PSTextBlockStyle4">
+            <Setter Property="FontFamily" Value="Stencil"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Background" Value="DimGray"/>
+            <Setter Property="FontStretch" Value="UltraCondensed"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="PSTextBlockStyle5">
+            <Setter Property="FontFamily" Value="Stencil"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Background" Value="DimGray"/>
+            <Setter Property="Foreground" Value="DarkOrange"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+        <Style TargetType="TreeView" x:Key="XMLViewerTreeViewStyle">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="Aquamarine"/>
+        </Style>
+        <Style TargetType="Viewbox" x:Key="StatusViewboxStyle">
+            <Setter Property="StretchDirection" Value="Both"/>
+            <Setter Property="Stretch" Value="Uniform" />
+        </Style>
+        <Style TargetType="Window" x:Key="PartswapperWindowTheme">
+            <Setter Property="Title" Value="Picarl's Partswapper"/>
+            <Setter Property="Background" Value="#FFEE8F07"/>
+            <Setter Property="Icon" Value="picarl.ico"/>
+            <Setter Property="ResizeMode" Value="CanMinimize"/>
+            <Setter Property="SizeToContent" Value="WidthAndHeight"/>
+        </Style>
+        <Style TargetType="Window" x:Key="PartswapperTheme">
+            <Setter Property="Title" Value="Picarl's Partswapper"/>
+            <Setter Property="Background" Value="#FFEE8F07"/>
+            <Setter Property="Icon" Value="picarl.ico"/>
+            <Setter Property="ResizeMode" Value="CanResizeWithGrip"/>
+            <Setter Property="WindowState" Value="Normal"/>
+            <Setter Property="SizeToContent" Value="WidthAndHeight"/>
+        </Style>
+
+        <ControlTemplate x:Key="PS2024PartSourceTabControl" TargetType="TabControl">
+            <StackPanel>
+                <Label Background="DarkOrange" Foreground="Black" FontSize="14" FontWeight="DemiBold" FontFamily="Consolas" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Orange" BorderThickness="5">PART SOURCE</Label>
+                <!-- 
+                <ScrollViewer Background="Orange" Padding="0" Height="100" IsEnabled="True" HorizontalScrollBarVisibility="Visible" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                    <TabPanel IsItemsHost="True" Background="OrangeRed" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </ScrollViewer> -->
+                <ComboBox>
+                    
+                </ComboBox>
+                <Label Background="DarkOrange" Foreground="Black" FontSize="14" FontWeight="DemiBold" FontFamily="Consolas" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Orange" BorderThickness="5"> SOURCE CONTENTS</Label>
+                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"/>
+            </StackPanel>
+        </ControlTemplate>
+
+    </Application.Resources>
+</Application>

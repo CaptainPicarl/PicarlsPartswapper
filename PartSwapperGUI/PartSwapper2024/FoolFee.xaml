@@ -1,0 +1,55 @@
+﻿<Window x:Class="PartSwapperGUI.PartSwapper2024.FoolFee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PartSwapperGUI.PartSwapper2024"
+        mc:Ignorable="d"
+        Title="Fascist Fee: Freedom isn't free." Height="600" Width="400">
+    <StackPanel Background="Black">
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="WrapWithOverflow">
+            <TextBlock.Text>
+                This software developed by a PROUD US NAVY VETERAN and ANTIFACIST!
+            </TextBlock.Text>
+            <TextBlock.FontFamily>
+                Impact
+            </TextBlock.FontFamily>
+            <TextBlock.FontSize>
+                12
+            </TextBlock.FontSize>
+            <TextBlock.Foreground>
+                OrangeRed
+            </TextBlock.Foreground>
+        </TextBlock>
+        <Image>
+            <Image.Source>
+                <BitmapImage DecodePixelWidth="1000" UriSource="WeBeatThemBeforeIronFront.png"/>
+            </Image.Source>
+        </Image>
+        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock.Text>
+                SLAVA UKRAINI! FUCK DONALD TRUMP! FUCK PUTIN!
+            </TextBlock.Text>
+            <TextBlock.FontFamily>
+                Impact
+            </TextBlock.FontFamily>
+            <TextBlock.FontSize>
+                18
+            </TextBlock.FontSize>
+            <TextBlock.Foreground>
+                OrangeRed
+            </TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock Name="CountdownTimerTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock.FontFamily>
+                Impact
+            </TextBlock.FontFamily>
+            <TextBlock.FontSize>
+                14
+            </TextBlock.FontSize>
+            <TextBlock.Foreground>
+                OrangeRed
+            </TextBlock.Foreground>
+        </TextBlock>
+    </StackPanel>
+</Window>

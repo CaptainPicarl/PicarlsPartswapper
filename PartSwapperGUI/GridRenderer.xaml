@@ -1,0 +1,46 @@
+﻿<Window x:Class="PartSwapperGUI.GridRenderer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PartSwapperGUI"
+        xmlns:skia="clr-namespace:SkiaSharp.Views.WPF;assembly=SkiaSharp.Views.WPF"
+        mc:Ignorable="d"
+        Height="1000" Width="1200" Style="{StaticResource PartswapperWindowTheme}">
+    <StackPanel x:Name="gridRenderStackPanel" Visibility="Visible" Orientation="Horizontal">
+        <StackPanel Orientation="Vertical">
+            <Label>Controls</Label>
+            <Button Name="gridRotateButton">Rotate Grid</Button>
+            <Line Height="20"></Line>
+            <Label>Pixel Size:</Label>
+            <TextBox Name="rectangleSizeTextbox" TextChanged="rectValueChangedEvent">1</TextBox>
+            <Line Height="20"></Line>
+
+        </StackPanel>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Height="100">
+                    <Menu>
+                        <MenuItem Header="File">
+                            
+                        </MenuItem>
+                    </Menu>
+                </StackPanel>
+                <skia:SKElement Name="gridRendererSKCanvas" Height="768" Width="1024" PaintSurface="OnPaintSurface" IsManipulationEnabled="True" VerticalAlignment="Center"></skia:SKElement>
+                <StackPanel Height="100">
+                    <StatusBar>
+                        
+                    </StatusBar>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical">
+            <Label>Layer Controls</Label>
+            <Line Height="20"></Line>
+            <Label>Current Layer</Label>
+            <TextBox Name="xCursorIndicatorTextBlock"></TextBox>
+            <Line Height="20"></Line>
+            <ScrollBar Name="xCursorScrollbar" Orientation="Vertical" Height="200" Scroll="shipRenderScrollbar_ValueChanged"></ScrollBar>
+        </StackPanel>
+    </StackPanel>
+</Window>

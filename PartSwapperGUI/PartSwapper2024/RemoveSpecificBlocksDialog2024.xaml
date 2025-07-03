@@ -1,0 +1,35 @@
+﻿<Window x:Class="PartSwapperGUI.PartSwapper2024.RemoveSpecificBlocksDialogue2024"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:partSwapper="clr-namespace:PartSwapperXMLSE;assembly=PartSwapperXMLSE"
+        xmlns:local="clr-namespace:PartSwapperGUI"
+        mc:Ignorable="d"
+        Title="Remove Specific Blocks..." Height="200" Width="300"         
+        Style="{StaticResource PartswapperWindowTheme}">
+    
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource PSTextBlockStyle3}">If any block contains the string you enter in the field below: It will be deleted!</TextBlock>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <TextBox Name="removeSpecificTermTextBox" Style="{StaticResource OptionsTextBox}" GotFocus="TextBox_GotFocus">
+                Please enter the Wildcard term to for blocks you want DELETED!
+            </TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical">
+            <Grid Height="10"/>
+            <Button Name="removeSpecificButton" Style="{StaticResource ButtonStyle2}" Click="removeSpecificButton_Click">Remove Specific Blocks...</Button>
+            <Grid Height="10"/>
+            <Button Style="{StaticResource ButtonStyle2}" Click="CancelButton_Click">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</Window>

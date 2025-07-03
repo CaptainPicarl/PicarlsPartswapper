@@ -1,0 +1,9 @@
+[submodule "AWE-Grunker-s-Finest"]
+	path = AWE-Grunker-s-Finest
+	url = https://github.com/Asy93/AWE-Grunker-s-Finest.git
+[submodule "SkunkWorks-Tiered-Tech"]
+	path = SkunkWorks-Tiered-Tech
+	url = https://github.com/Asy93/SkunkWorks-Tiered-Tech.git
+[submodule "Aryx-Weapon-Enterprises"]
+	path = Aryx-Weapon-Enterprises
+	url = https://github.com/Aryx3D/Aryx-Weapon-Enterprises.git

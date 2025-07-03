@@ -1,0 +1,47 @@
+﻿<Window x:Class="PartSwapperGUI.Options"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PartSwapperGUI"
+        mc:Ignorable="d"
+        Title="Options" Height="450" Width="800" Style="{StaticResource PartswapperWindowTheme}">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource PSTextBlockStyle2}">Edit Configuration Variables</TextBlock>
+            <DataGrid Name="optionsGrid" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" AutoGenerateColumns="True" IsManipulationEnabled="True" 
+                      SelectionMode="Single" SelectionUnit="FullRow" SelectionChanged="optionsGrid_SelectionChanged">
+            </DataGrid>
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Viewbox Style="{StaticResource StatusViewboxStyle}" Grid.Row="0" Grid.Column="0">
+                    <TextBlock Name="oldValueTextbox" Style="{StaticResource PSTextBlockStyle2}">Editing Value:</TextBlock>
+                </Viewbox>
+                <TextBox Name="newValueTextbox"  Grid.Row="1" Grid.Column="0" Style="{StaticResource OptionsTextBox}">
+                    <TextBox.Text>New Value...</TextBox.Text>
+                </TextBox>
+                <Button Grid.Row="2" Grid.Column="0" Content="Update Value" Style="{StaticResource ButtonStyle}"/>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,82 @@
+﻿<Window x:Class="PartSwapperGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PartSwapperGUI"
+        xmlns:partSwapper="clr-namespace:PartSwapperXMLSE;assembly=PartSwapperXMLSE"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Height="700" Width="500" Style="{StaticResource PartswapperWindowTheme}">
+    <StackPanel x:Name="PartSwapGrid">
+
+        <!-- Removed XML Treeviewer, we are going to relocate it. -->
+        <!-- 
+        <Grid Grid.Column="0" Grid.Row="3" Visibility="Hidden" Name="XMLViewerGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="6*" />
+            </Grid.RowDefinitions>
+            <Label Content="BPC XML Viewer" FontFamily="OCR A Extended" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+            <TreeView Name="xmlTreeViewer" FontFamily="OCR A Extended" Margin="5" Padding="10" Background="Aquamarine" FontSize="14" Grid.Column="0" Grid.Row="1"/>
+        </Grid>
+        -->
+        
+        <Border Style="{StaticResource InternalBorder}" Width="300">
+            <TextBlock Name="partswapperIntroLabel" Text="Picarl's Partswapper!" Style="{StaticResource PartswapperTitleTextBlock}"/>
+        </Border>
+        <Border Style="{StaticResource InternalBorder}" Width="300">
+            <TextBlock Name="partswapperStatusTextBlock" Text="Status: [Initializing...]"  Style="{StaticResource PartswapperTitleTextBlock2}"/>
+        </Border>
+        <Border Style="{StaticResource InternalBorder}" Width="300">
+            <TextBlock Name="currentBlueprintLabel" Text="Current Blueprint: [None]"  Style="{StaticResource PartswapperTitleTextBlock2}"/>
+        </Border>
+
+        <StackPanel Visibility="Visible" Name="CubegridSelect">
+
+            <Label Content="Select a CubeGrid:" Style="{StaticResource PSLabelStyle}"/>
+            <ListBox Name="cubegridListBox" 
+                     SelectionChanged="CubegridListBox_SelectionChanged" 
+                     Style="{StaticResource PSListboxStyle3}" 
+                     ScrollViewer.VerticalScrollBarVisibility="Visible"
+                     Width="300"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Name="ControlsStackPanel">
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <Button Content="Select SBC File" Click="ChooseFileButton_Click" Style="{StaticResource ButtonStyle}"/>
+            </Border>
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <Button Name="optionsButton" IsEnabled="True" Content="Options" Style="{StaticResource ButtonStyle}" Click="OptionsButton_Click"/>
+            </Border>
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <Button x:Name="xmlViewerButton" Content="View BPC XML" IsEnabled="false" Style="{StaticResource ButtonStyle}" Click="XMLViewerButton_Click"/>
+            </Border>
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <Button Name="renderGridButton" Content="Render Grid" Click="RenderGridButton_Click" IsEnabled="false"  Style="{StaticResource ButtonStyle}"/>
+            </Border>
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <Button x:Name="partswapButton" Content="Partswap" IsEnabled="false" Click="Partswap_Click"  Style="{StaticResource ButtonStyle}"/>
+            </Border>
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <Button x:Name="grouperButton" Content="Grouper Tool" IsEnabled="false" Style="{StaticResource ButtonStyle}" Click="GrouperButton_Click"/>
+            </Border>
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <Button x:Name="weaponcoreStatsButton" Content="WeaponCore Stats" Style="{StaticResource ButtonStyle}" Click="WeaponcoreStatsButton_Click"/>
+            </Border>
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <Button x:Name="debugToggleButton" Content="Debug OFF" Style="{StaticResource ButtonStyle}" Click="DebugToggleButton_Click"/>
+            </Border>
+            <Border Style="{StaticResource ButtonBorderStyle}">
+                <Button x:Name="exitButton" Content="Exit" Style="{StaticResource ButtonStyle}" Click="ExitButton_Click"/>
+            </Border>
+            <Grid Height="100"/>
+        </StackPanel>
+
+    </StackPanel>
+
+</Window>

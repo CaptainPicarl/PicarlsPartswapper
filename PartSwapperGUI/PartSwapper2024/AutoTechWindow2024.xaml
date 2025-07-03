@@ -1,0 +1,94 @@
+﻿<Window x:Class="PartSwapperGUI.PartSwapper2024.AutoTechWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PartSwapperGUI"
+        mc:Ignorable="d"
+        Title="Auto-Tech" Height="500" Width="300"         
+        Style="{StaticResource PartswapperWindowTheme}">
+    
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Column="0" Grid.Row="0" Style="{StaticResource StatusBorder}" Height="36">
+            <TextBlock Style="{StaticResource PSTextBlockStyle3}">Select Which Block Categories to Tech, and what tier to tech them to!</TextBlock>
+        </Border>
+
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <Grid Height="10"></Grid>
+            <TextBlock HorizontalAlignment="Center">
+            Choose Tech Level:
+            </TextBlock>
+
+            <ComboBox Name="autotechLevelComboBox"  Width="50" SelectedIndex="0" HorizontalAlignment="Center">
+                <ComboBoxItem Content="0"></ComboBoxItem>
+                <ComboBoxItem Content="1"></ComboBoxItem>
+                <ComboBoxItem Content="2"></ComboBoxItem>
+                <ComboBoxItem Content="3"></ComboBoxItem>
+            </ComboBox>
+            
+            <Grid Height="10"></Grid>
+            <TextBlock TextWrapping="WrapWithOverflow">
+                The following are the common name components of blocks eligible to be Auto-Teched. Select the name that most-closely describes the blocks you are trying to AutoTech...
+            </TextBlock>
+            <Grid Height="10"></Grid>
+            <ScrollViewer Height="240">
+                <StackPanel Orientation="Vertical" Name="systemSelectorStackPanel">
+                    <CheckBox Name="LargeAtmosphericThrustChkbox">LargeAtmosphericThrust</CheckBox>
+                    <CheckBox Name="SmallAtmosphericThrustChkbox">SmallAtmosphericThrust</CheckBox>
+                    <CheckBox Name="LargeHydrogenThrustChkbox">LargeHydrogenThrust</CheckBox>
+                    <CheckBox Name="SmallHydrogenThrustChkbox">SmallHydrogenThrust</CheckBox>
+                    <CheckBox Name="LargeThrustSciFiChkbox">LargeThrustSciFi</CheckBox>
+                    <CheckBox Name="SmallThrustSciFiChkbox">SmallThrustSciFi</CheckBox>
+                    <CheckBox Name="LargeHydrogenThrustIndustrialChkbox">LargeHydrogenThrustIndustrial</CheckBox>
+                    <CheckBox Name="SmallHydrogenThrustIndustrialChkbox">SmallHydrogenThrustIndustrial</CheckBox>
+                    <CheckBox Name="LargeThrustChkbox">LargeThrust</CheckBox>
+                    <CheckBox Name="SmallThrustChkbox">SmallThrust</CheckBox>
+                    <CheckBox Name="LargeModularThruster">LargeModularThruster</CheckBox>
+                    <CheckBox Name="SmallModularThruster">SmallModularThruster</CheckBox>
+                    <CheckBox Name="BatteriesChkBox">Battery</CheckBox>
+                    <CheckBox Name="LargeBlockLargeGeneratorChkbox">LargeBlockLargeGenerator</CheckBox>
+                    <CheckBox Name="LargeBlockSmallGeneratorChkbox">LargeBlockSmallGenerator</CheckBox>
+                    <CheckBox Name="SmallBlockLargeGeneratorChkbox">SmallBlockLargeGenerator</CheckBox>
+                    <CheckBox Name="SmallBlockSmallGeneratorChkbox">SmallBlockSmallGenerator</CheckBox>
+                    <CheckBox Name="RefineriesChkbox">Refinery</CheckBox>
+                    <CheckBox Name="AssemblersChkbox">Assembler</CheckBox>
+                    <CheckBox Name="O2H2GensChkbox">OxygenGenerator</CheckBox>
+                    <CheckBox Name="GyrosChkbox">Gyro</CheckBox>
+                    <CheckBox Name="EnginesChkbox">HydrogenEngine</CheckBox>
+                    <CheckBox Name="CargoChkbox">Container</CheckBox>
+                    <CheckBox Name="OreDetector">OreDetector</CheckBox>
+                    <CheckBox Name="OxygenTankChkbox">OxygenTank</CheckBox>
+                    <CheckBox Name="HydrogenChkbox">HydrogenTank</CheckBox>
+                    <CheckBox Name="ProductivityModuleChkBoxChkbox">ProductivityModule</CheckBox>
+                    <CheckBox Name="EffectivenessModuleChkBoxChkbox">EffectivenessModule</CheckBox>
+                    <CheckBox Name="EnergyModuleChkbox">EnergyModule</CheckBox>
+                    <CheckBox Name="GanymedeYieldModuleChkbox">GanymedeYieldModule</CheckBox>
+                    <CheckBox Name="GanymedePowerModuleChkbox">GanymedePowerModule</CheckBox>
+                    <CheckBox Name="GanymedeSpeedModuleChkbox">GanymedeSpeedModule</CheckBox>
+                    <CheckBox Name="PointDefenseChkbox">PointDefense</CheckBox>
+                    <CheckBox Name="LGDeflectorArrayChkbox">LGDeflectorArray</CheckBox>
+                    <CheckBox Name="SolarPanelChkbox">SolarPanel</CheckBox>
+
+
+                </StackPanel>
+            </ScrollViewer>
+
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical">
+            <Grid Height="20"></Grid>
+            <Button Name="autoTechExecuteButton" Style="{StaticResource ButtonStyle2}" Click="OnAutoTechExecuteButton_Click">Execute Auto-Tech!</Button>
+            <Grid Width="10" Height="10"/>
+            <Button Style="{StaticResource ButtonStyle2}" Click="CloseButton_Click" >Close</Button>
+            <Grid Width="10" Height="10"/>
+        </StackPanel>
+    </Grid>
+</Window>

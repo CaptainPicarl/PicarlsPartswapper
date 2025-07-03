@@ -1,0 +1,20 @@
+﻿<Window x:Class="PartSwapperGUI.PartSwapper2024.PartswapOp2024Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PartSwapperGUI.PartSwapper2024"
+        mc:Ignorable="d"
+        Title="PartSwap Operation"
+        Style="{StaticResource PartswapperTheme}">
+
+    <!-- I got lazy and couldnt think of names, so the scheme is left/right oriented-->
+    <StackPanel Name="L0_VerticalStackPanel_0" Orientation="Vertical">
+        <StackPanel Name="L1_HorizontalStackPanel_0" Orientation="Horizontal">
+            <StackPanel Name="L2_LeftUIStackPanel"  Orientation="Vertical" />
+            <StackPanel Name="L2_RightUIStackPanel" Orientation="Vertical"  />
+        </StackPanel>
+        <StackPanel Name="L1_VerticalStackPanel_1" Orientation="Vertical" />
+    </StackPanel>
+
+</Window>

@@ -1,0 +1,172 @@
+﻿<Window x:Class="PartSwapperGUI.PartSwapper2024.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PartSwapperGUI.PartSwapper2024"
+        xmlns:skia="clr-namespace:SkiaSharp.Views.WPF;assembly=SkiaSharp.Views.WPF"
+        mc:Ignorable="d"
+        Title="PartSwapper2024"
+        Style="{DynamicResource PS2024_WindowStyle}">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style x:Key="PS2024_WindowStyle" TargetType="{x:Type Window}">
+                <Setter Property="Background" Value="DimGray" />
+            </Style>
+            <Style x:Key="PS2024_MenuStyle" TargetType="{x:Type Menu}">
+                <Setter Property="Background" Value="DarkGray"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <StackPanel>
+        <Menu Name="MainWindow_Menu" Style="{DynamicResource PS2024_MenuStyle}">
+            <MenuItem Header="_File" >
+                <MenuItem Header="_Load Blueprint" Click="OnMenuItem_LoadBPC_Click"/>
+                <MenuItem Header="Exit" Click="OnMenuItem_Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Options">
+                <MenuItem Header="Transparent Renderer">
+                    <CheckBox Name="UITransparentRendererCheckBox" Checked="UITransparentRendererCheckBox_ValueChanged" Unchecked="UITransparentRendererCheckBox_ValueChanged"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="AutoTech" Click="AutoTechMenu_Click"/>
+            <MenuItem Header="_Armor">
+                <MenuItem Header="_Heavy to Light Conversion" Click="HeavyToLightConversion_Click"/>
+                <MenuItem Header="_Light to Heavy Conversion" Click="LightToHeavyConversion_Click"/>
+                <MenuItem Header="_Tritanium to Light Conversion" Click="TritaniumToLight_Click"/>
+            </MenuItem>
+            <MenuItem Header="_PartSwap">
+                <MenuItem Header="_PartSwap via Category..." Click="PartSwapViaCategory_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Remove">
+                <MenuItem Header="_Remove SPECIFIC..?" Click="RemoveSpecific_Click"/>
+                <MenuItem Header="_Remove All EXCEPT..?" Click="RemoveAllExcept_Click"/>
+                <MenuItem Header="_Remove All BLOCKS EXCEPT ARMOR!" Click="RemoveAllExceptArmor_Click"/>
+                <MenuItem Header="_Remove All ARMOR...">
+                    <MenuItem Header="Remove ALL HEAVY ARMOR ONLY?" Click="RemoveAllHeavyArmor_Click"/>
+                    <MenuItem Header="Remove ALL LIGHT ARMOR ONLY?" Click="RemoveAllLightArmor_Click"/>
+                    <MenuItem Header="Remove ALL ARMOR?" Click="RemoveAllArmor_Click"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="_Transaction Log" Click="OnViewTransactionsLog_Click"/>
+                <MenuItem Header="_Image Manipulation">
+                    <MenuItem Header="_Rotate Image"/>
+                </MenuItem>
+                <MenuItem Header="_Debug">
+                    <MenuItem Header="_Debug Mode ON" Click="OnSetDebugModeON"/>
+                    <MenuItem Header="_Debug Mode OFF" Click="OnSetDebugModeOFF"/>
+                </MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="_Stats">
+                <MenuItem Header="_Blocks and Components">
+                    <MenuItem Header="View Blocks and Components Stats" Click ="OnStatsBlocksAndComponents_Click"/>
+                </MenuItem>
+            </MenuItem>
+
+
+        </Menu>
+
+        <StackPanel Orientation="Horizontal" Name="gridRendererStackPanelContainer">
+            <Slider Name="zAxisSlider">
+                <Slider.Background>Gray</Slider.Background>
+                <Slider.Orientation>Vertical</Slider.Orientation>
+            </Slider>
+            <TabControl Name="CubeGridRendererTabControl" TabStripPlacement="Left">
+                <TabControl.Background>
+                    SlateGray
+                </TabControl.Background>
+                <TabControl.Resources>
+                    <Style TargetType="{x:Type Grid}">
+                        <Setter Property="Background" Value="DarkOrange"/>
+                    </Style>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Foreground" Value="LightGray" />
+                        <Setter Property="LayoutTransform">
+                            <Setter.Value>
+                                <RotateTransform Angle="270" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="DarkOrange" CornerRadius="4,4,0,0" Margin="2,0">
+                                        <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="Gray" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="Border" Property="Background" Value="SlateGray" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+                <TabItem>
+                    <TabItem.Header>
+                        Start!
+                    </TabItem.Header>
+                    <!--<TabItem.Content>
+                        <skia:SKElement Name="gridRendererSkiaElement" /> 
+                    </TabItem.Content>-->
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+        <StatusBar Name="StatusBar">
+            <StatusBarItem>
+                <TextBlock Name="StatusZLayerIndLabel">Z-Layer</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Name="StatusZLayerIndValue"></TextBlock>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock Name="StatusCursorWindowPositionLabel">Cursor Window Position</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Name="StatusCursorWindowXPositionValue"></TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Name="StatusCursorWindowYPositionValue"></TextBlock>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock Name="StatusCursorSkiaPositionLabel">Cursor Skia Position</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Name="StatusCursorSkiaXPositionValue"></TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Name="StatusCursorSkiaYPositionValue"></TextBlock>
+            </StatusBarItem>
+
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock Name="StatusHoveredBlockLabel">Hovered Block</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Name="StatusHoveredBlockValue"></TextBlock>
+            </StatusBarItem>
+
+            #Loaded File
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock Name="StatusBlueprintPathLabel">Current Blueprint:</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Name="StatusBlueprintPathValue">NO BLUEPRINT LOADED</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+    </StackPanel>
+</Window>

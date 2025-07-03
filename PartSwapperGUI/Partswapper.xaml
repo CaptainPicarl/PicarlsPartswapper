@@ -1,0 +1,179 @@
+﻿<Window x:Class="PartSwapperGUI.PartswapperGUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PartSwapperGUI"
+        mc:Ignorable="d"
+        Style="{StaticResource PartswapperTheme}"
+        WindowStartupLocation="CenterScreen">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+
+                    <Border Style="{StaticResource InternalBorder}">
+                        <StackPanel Orientation="Vertical">
+                            <Border Style="{StaticResource InternalBorder2}" Width="150">
+                                <TextBlock Style="{StaticResource PSTextBlockStyle1}">Partswapper Controls</TextBlock>
+                            </Border>
+                            <Border Style="{StaticResource StatusBorder}">
+                                <Button Name="replaceButton" Style="{StaticResource ButtonStyle2}" Content="Swap Parts!"  Click="SwapPartsButton_Click"/>
+                            </Border>
+                            <Border Style="{StaticResource StatusBorder}">
+                                <Button Name="resetButton" Style="{StaticResource ButtonStyle2}" Content="Reset Selections"  />
+                            </Border>
+                            <!--<Border Style="{StaticResource StatusBorder}">
+                                <Button Name="locateModsDir" Style="{StaticResource ButtonStyle2}" Content="Find Mods Folder" Click="LocateModsDir_Click" FontSize="10"/>
+                            </Border>-->
+                            <Border Style="{StaticResource StatusBorder}">
+                                <Button Name="autoTechButton" Style="{StaticResource ButtonStyle2}" Content="AutoTech" Click="autoTechButton_Click"/>
+                            </Border>
+
+
+                            <Border Style="{StaticResource StatusBorder}">
+                                    <Button Name="removePartsButton" Style="{StaticResource ButtonStyle2}" Content="Remove Blocks Except..." Click="removePartsButton_Click"/>
+                            </Border>
+
+                            <Border Style="{StaticResource StatusBorder}">
+                                    <Button Name="removeSpecificButton" Style="{StaticResource ButtonStyle2}" Content="Remove Specific Blocks..." Click="removeSpecificButton_Click"/>
+                            </Border>
+                            <Border Style="{StaticResource StatusBorder}">
+                                <StackPanel>
+                                    <Label Name="removeArmorButton" Style="{StaticResource PSLabelStyle}" Content="ArmorSwap Armor Manipulation"/>
+                                    <RadioButton Name="convertLightArmorToHeavyBttn">Convert all Light Armor to Heavy Armor</RadioButton>
+                                    <RadioButton Name="convertHeavyArmorToLightBttn">Convert all Heavy Armor to Light Armor</RadioButton>
+                                    <RadioButton Name="removeLightArmorOnlyRadioRadBttn">Remove LIGHT ARMOR Only</RadioButton>
+                                    <RadioButton Name="removeHeavyArmorOnlyRadioRadBttn">Remove HEAVY ARMOR Only</RadioButton>
+                                    <RadioButton Name="removeAllArmorRadioRadBttn">Remove ALL Armor</RadioButton>
+                                    <RadioButton Name="removeAllButArmorRadBttn">Remove ALL EXCEPT Armor</RadioButton>
+                                    <RadioButton Name="stcAutoTritArmorRadBttn">Heavy/Light to STC Tritanium Armor</RadioButton>
+                                    <RadioButton Name="stcAutoTritToVanillaArmorRadBttn">STC Tritanium Armor to Vanilla (Light Armor)</RadioButton>
+                                    <Border Style="{StaticResource StatusBorder}">
+                                        <Button Name="armorSwapButton" Style="{StaticResource ButtonStyle2}" Content="Execute ArmorSwap" Click="armorSwapButton_Click"/>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource StatusBorder}">
+                                <Button Name="exitButton" Style="{StaticResource ButtonStyle}" Content="Exit" Click="exitButton_Click"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource InternalBorder}" Width="200" Height="300">
+                        <StackPanel Orientation="Vertical">
+                            <Border Style="{StaticResource InternalBorder2}" Width="160">
+                                <TextBlock Style="{StaticResource PSTextBlockStyle1}">Partswapper Status</TextBlock>
+                            </Border>
+                            <StackPanel Height="50">
+                                <TextBlock Name="modsDirTextBlockLabel" Style="{StaticResource PSTextBlockStyle1}">Mods Directory</TextBlock>
+                                <Viewbox>
+                                    <TextBlock Name="modsDirTextBlock"  Style="{StaticResource PSTextBlockStyle3}"></TextBlock>
+                                </Viewbox>
+                            </StackPanel>
+                            <StackPanel Height="50">
+                                <TextBlock Name="originalPartTextBlockLabel" Style="{StaticResource PSTextBlockStyle1}">Selected Part</TextBlock>
+                                <Viewbox>
+                                    <TextBlock Name="originalPartTextBlock" Style="{StaticResource PSTextBlockStyle3}"></TextBlock>
+                                </Viewbox>
+                            </StackPanel>
+
+                            <StackPanel Height="50">
+                                <TextBlock Name="replacementPartTextBlockLabel" Style="{StaticResource PSTextBlockStyle1}">Replacement Part</TextBlock>
+                                <Viewbox>
+                                    <TextBlock Name="replacementPartTextBlock" Style="{StaticResource PSTextBlockStyle3}"></TextBlock>
+                                </Viewbox>
+                            </StackPanel>
+
+                            <StackPanel Height="50">
+                                <TextBlock Name="numberReplacedTextBlockLabel" Style="{StaticResource PSTextBlockStyle1}">Number Of Part(s) Replaced</TextBlock>
+                                <Viewbox>
+                                    <TextBlock Name="numberReplacedTextBlock" Style="{StaticResource PSTextBlockStyle3}"></TextBlock>
+                                </Viewbox>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+                <TabControl SelectedIndex="0" Grid.Column="1" Style="{StaticResource PSTabControlStyle}" Height="550">
+                    <TabItem Style="{StaticResource PSTabItemStyle}">
+                        <TabItem.Header>
+                            <Border Style="{StaticResource InternalBorder2}">
+                                <TextBlock Style="{StaticResource PSTextBlockStyle5}">Parts on your ship</TextBlock>
+                            </Border>
+
+                        </TabItem.Header>
+                        <ListBox Name="currentPartsListbox" Style="{StaticResource PSListboxStyle2}" SelectionChanged="DetectedPartsListbox_SelectionChanged" Height="450">
+                            <ListBoxItem Content="[Loading parts from your ship...]"/>
+                        </ListBox>
+                    </TabItem>
+                </TabControl>
+                <TabControl SelectedIndex="0" Grid.Column="2" Style="{StaticResource PSTabControlStyle}" Height="550">
+                    <TabItem Style="{StaticResource PSTabItemStyle}">
+                        <TabItem.Header>
+                            <Border Style="{StaticResource InternalBorder2}">
+                                <TextBlock Style="{StaticResource PSTextBlockStyle5}"> Manual</TextBlock>
+                            </Border>
+                        </TabItem.Header>
+                        <TabControl Style="{StaticResource PSTabControlStyle}" TabStripPlacement="Top">
+                            <TabItem Style="{StaticResource PSTabItemStyle}">
+                                <TabItem.Header>
+                                    <Border Style="{StaticResource InternalBorder2}">
+                                        <TextBlock Style="{StaticResource PSTextBlockStyle5}"> Part categories</TextBlock>
+                                    </Border>
+                                </TabItem.Header>
+                                <ListBox Name="replacementPartCategoriesListbox" SelectionChanged="PartCategoriesListbox_SelectionChanged"  Style="{StaticResource PSListboxStyle2}" >
+                                    <ListBoxItem Content="[Loading part categories...]" />
+                                </ListBox>
+                            </TabItem>
+                            <TabItem Style="{StaticResource PSTabItemStyle}">
+                                <TabItem.Header>
+                                    <Border Style="{StaticResource InternalBorder2}">
+                                        <TextBlock Style="{StaticResource PSTextBlockStyle5}"> Parts in category</TextBlock>
+                                    </Border>
+                                </TabItem.Header>
+                                <ListBox x:Name="replacementPartsListbox"  SelectionChanged="PartsListbox_SelectionChanged" Height="330" Style="{StaticResource PSListboxStyle2}" >
+                                    <ListBoxItem Content="[Loading parts...]"/>
+                                </ListBox>
+                            </TabItem>
+                        </TabControl>
+                    </TabItem>
+                    <TabItem Style="{StaticResource PSTabItemStyle}">
+                        <TabItem.Header>
+                            <Border Style="{StaticResource InternalBorder2}">
+                                <TextBlock Style="{StaticResource PSTextBlockStyle5}" >Similar Blocks</TextBlock>
+                            </Border>
+                        </TabItem.Header>
+                        <ListBox x:Name="similarBlockList" Style="{StaticResource PSListboxStyle2}" SelectionChanged="SimilarBlockList_SelectionChanged" >
+                            <ListBoxItem Content="[Select a block on your ship to search for similar...]"/>
+                        </ListBox>
+                    </TabItem>
+                    <TabItem Style="{StaticResource PSTabItemStyle}">
+                        <TabItem.Header>
+                            <Border Style="{StaticResource InternalBorder2}">
+                                <TextBlock Style="{StaticResource PSTextBlockStyle5}" >Transactions</TextBlock>
+                            </Border>
+                        </TabItem.Header>
+                        <ListBox x:Name="transactionsListBox" Style="{StaticResource PSListboxStyle2}">
+                            <ListBoxItem Content="[Loading transactions...]"/>
+                        </ListBox>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+            <StackPanel Orientation="Horizontal">
+
+
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

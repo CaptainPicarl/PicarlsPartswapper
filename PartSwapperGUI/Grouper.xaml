@@ -1,0 +1,70 @@
+﻿<Window x:Class="PartSwapperGUI.Grouper"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PartSwapperGUI"
+        mc:Ignorable="d"
+        Title="Grouper - I'm gonna grooupppp!" Height="400" Width="300"         
+        Style="{StaticResource PartswapperWindowTheme}">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Image Source="grouper.png" Height="50" Width="100" HorizontalAlignment="Stretch"/>
+            <Grid Height="1"></Grid>
+            <Border  Style="{StaticResource StatusBorder}" Height="36">
+                <TextBlock Style="{StaticResource PSTextBlockStyle3}">Select Which Block Categories to Group</TextBlock>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <TabControl Name="GrouperTabControl">
+                <TabItem>
+                    <TabItem.Header>
+                        Current Grid
+                    </TabItem.Header>
+                    <ListBox Name="CurrentGridsListbox" SelectionChanged="CurrentGridsListbox_SelectionChanged">
+                        <ListBoxItem>
+                            Loading Grids!
+                        </ListBoxItem>
+                    </ListBox>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        Current Groups
+                    </TabItem.Header>
+                    <ListBox Name="CurrentGroupsListbox" SelectionChanged="CurrentGroupsListbox_SelectionChanged">
+                        <ListBoxItem>
+                            Loading groups!
+                        </ListBoxItem>
+                    </ListBox>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        Blocks in Selected Group
+                    </TabItem.Header>
+                    <ListBox Name="BlocksInCurrentGroupsListbox" SelectionChanged="BlocksInCurrentGroupsListbox_SelectionChanged">
+                        <ListBoxItem>
+                            "No group currently selected!"
+                        </ListBoxItem>
+                    </ListBox>
+                </TabItem>
+            </TabControl>
+
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical">
+            <Grid Height="10"></Grid>
+            <Button Name="grouperExecuteButton" Style="{StaticResource ButtonStyle2}" Click="grouperExecuteButton_Click">Group!</Button>
+            <Grid Width="10" Height="5"/>
+            <Button Style="{StaticResource ButtonStyle2}" Click="Button_Click" >Close</Button>
+            <Grid Width="10" Height="5"/>
+        </StackPanel>
+    </Grid>
+</Window>
