@@ -10,7 +10,9 @@ namespace PartSwapperGUI.WCStatsAndPlots
 {
     class WCStatsAndPlots
     {
-        public static WpfPlot generateWeaponRangesScttPltWPF(List<I_WCDefinition> wcDefinitions, Color color1, Color color2, Color color3)
+        Dictionary<string, Func<List<I_WCDefinition>, Color, Color, Color, WpfPlot>> GraphNameToGraphDelegateMap;
+
+        public static WpfPlot GenerateWpnRangeScttPlt(List<I_WCDefinition> wcDefinitions, Color color1, Color color2, Color color3)
         {
             WpfPlot wepPlot = new WpfPlot();
 
@@ -103,7 +105,6 @@ namespace PartSwapperGUI.WCStatsAndPlots
                 switch (definition)
                 {
                     case WCWeaponDefinition wcWepDef:
-
 
                         // Check if we have a value that exceeds our current yAxis boundary
                         if (yAxisMax < maxDistanceData)

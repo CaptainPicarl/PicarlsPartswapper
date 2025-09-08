@@ -46,36 +46,36 @@ namespace PartSwapperXMLSE
 
             return;
         }
-
-        public void SetOption(string key, string value)
+        /// <summary>
+        /// Sets the option in our OptsDict, and then attempts to update the observable lists
+        /// </summary>
+        /// <param name="key">key to set</param>
+        /// <param name="value">value to set</param>
+        /// <returns>TRUE if an option was set succesfully, false otherwise.</returns>
+        public bool SetOption(string key, string value)
         {
             string oldValue = "";
 
+            if (!this.KeysList.Contains(key) || !this.OptsDict.ContainsKey(key))
+            {
+                return false;
+            }
+
             if (OptsDict.ContainsKey(key) && OptsDict[key] != null)
             {
-                // Update the values list first
+                // Update the OpsDict first, retaining the old value.
                 oldValue = OptsDict[key];
+                OptsDict[key] = value;
 
                 //...by removing the old value from the values list first
                 ValuesList.Remove(oldValue);
                 //...And then adding the new value!
                 ValuesList.Add(value);
-
-                // Then update the main dictionary
-                OptsDict[key] = value;
+                return true;
             }
             else
             {
-                // Update the values list first
-                //adding the new value
-                ValuesList.Add(value);
-
-                // Update the keys list 
-                //adding the new key
-                KeysList.Add(key);
-
-                // Then update the main dictionary
-                OptsDict.Add(key, value);
+                return false;
             }
         }
 
@@ -91,39 +91,13 @@ namespace PartSwapperXMLSE
             }
         }
 
-        [Obsolete("LoadOrCreateConfig with manual pathing is obsolete - please use LoadOrCreateConfig() without parameters instead", true)]
-        // This method loads the config file, and if present: Assembles an object from it
-        public void LoadOrCreateConfig(string appDataPath)
-        {
-            ConfigOptions? configOptions;
-
-            if (System.IO.File.Exists(appDataPath))
-            {
-                configOptions = JsonSerializer.Deserialize<ConfigOptions>(File.ReadAllText(appDataPath));
-
-                if (configOptions != null)
-                {
-                    this.OptsDict = configOptions.OptsDict;
-
-                    GenerateKeysFromMainDict();
-                    GenerateValuesFromMainDict();
-                }
-            }
-            else
-            {
-                // Situation where our config file does not exist
-                string serializedCO = JsonSerializer.Serialize(this);
-                Directory.CreateDirectory(System.IO.Path.GetDirectoryName(appDataPath));
-                File.WriteAllText(appDataPath, serializedCO);
-            }
-        }
-
         // This method loads the config file, and if present: Assembles an object from it
         public void LoadOrCreateConfig()
         {
             ConfigOptions? configOptions;
             JsonSerializerOptions? jsonSerializerOptions = new JsonSerializerOptions();
-            if (System.IO.File.Exists(this._SavePath))
+
+            if (File.Exists(this._SavePath))
             {
                 configOptions = JsonSerializer.Deserialize<ConfigOptions>(File.ReadAllText(this._SavePath));
 
@@ -160,41 +134,7 @@ namespace PartSwapperXMLSE
 
             foreach (string value in OptsDict.Values)
             {
-                this.KeysList.Add(value);
-            }
-        }
-
-        [Obsolete("SaveConfig with manual pathing is obsolete - please use SaveConfig() without parameters instead", true)]
-        // This method takes a ConfigOptions object, serializes it to JSON, and writes it to the appDataPath in plaintext
-        public void SaveConfig(string appDataPath)
-        {
-
-            string serializedCO;
-            JsonSerializerOptions serializerOpts = new JsonSerializerOptions();
-
-            // Serializer options
-            serializerOpts.IncludeFields = true;
-
-            serializedCO = JsonSerializer.Serialize(this, serializerOpts);
-
-            if (System.IO.File.Exists(appDataPath))
-            {
-                File.WriteAllText(appDataPath, serializedCO);
-            }
-            else
-            {
-                // Situation where our config file does not exist
-
-                // case where the appDataPath is, for some reason, invalid
-                if (System.IO.Path.GetDirectoryName(appDataPath) == null || System.IO.Path.GetDirectoryName(appDataPath).Equals(""))
-                {
-                    throw new InvalidDataException("Path.GetDirectoryName(appDataPath) invalid!");
-                }
-                else
-                {
-                    Directory.CreateDirectory(System.IO.Path.GetDirectoryName(appDataPath));
-                    File.WriteAllText(appDataPath, serializedCO);
-                }
+                this.ValuesList.Add(value);
             }
         }
 
@@ -275,7 +215,6 @@ namespace PartSwapperXMLSE
         }
 
     }
-
 
 
 }

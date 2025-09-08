@@ -136,6 +136,7 @@ namespace PartSwapperGUI.PartSwapper2024
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"PartSwapper.PerformOperation: Exception while attempting operation {operation}!\nException:\n{ex}");
                 throw new ArgumentException($"PartSwapper.PerformOperation: Generic exception while attempting operation {operation}!\nException:\n{ex}");
             }
         }
@@ -808,7 +809,7 @@ namespace PartSwapperGUI.PartSwapper2024
                 // Useful for logging and debug
                 bool blockChanged = false;
 
-                Regex ArmorDiscriminatorPattern = new Regex("(Large|Small)?(HeavyArmor|Armor|HeavyBlock|HeavyHalf|HalfSlope|ArmorSlope|BlockHeavy|Block|Half)([\\S]+)");
+                Regex ArmorDiscriminatorPattern = new Regex("(Large|Small)?(HeavyArmor|Armor|HeavyBlock|HeavyHalf|ArmorSlope|BlockHeavy|Block|Half)([\\S]+)");
 
                 BlueprintCell[,,] cubeblocks = currentCubegridEntry.Item1.GetBlueprintCell3DArrayRef();
 
@@ -878,7 +879,6 @@ namespace PartSwapperGUI.PartSwapper2024
 
                             switch (group1)
                             {
-
                                 case "Large":
                                     switch (group2)
                                     {
@@ -976,19 +976,97 @@ namespace PartSwapperGUI.PartSwapper2024
                                             switch (group3)
                                             {
                                                 case "ArmorBlock":
-                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavyArmor");
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallHeavyBlock");
                                                     break;
                                                 case "ArmorSlope":
-                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavyArmor");
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallHeavyBlock");
                                                     break;
                                                 case "ArmorCorner":
-                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavyArmor");
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallHeavyBlock");
                                                     break;
                                                 case "ArmorCornerInv":
-                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavyArmor");
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallHeavyBlock");
+                                                    break;
+                                                case "ArmorCornerSquare":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
                                                     break;
                                                 case "ArmorCornerSquareInverted":
-                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavyArmor");
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSlope2Tip":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallHeavyBlock");
+                                                    break;
+                                                case "ArmorSlope2Base":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallHeavyBlock");
+                                                    break;
+                                                case "ArmorSlopedCornerTip":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorRaisedSlopedCorner":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSquareSlopedCornerTip":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSquareSlopedCornerBase":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSquareSlopedCornerTipInv":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSlopedCornerBase":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSlopedCorner":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorHalfSlopedCornerBase":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorCorner2Tip":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallHeavyBlock");
+                                                    break;
+                                                case "ArmorCorner2Base":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallHeavyBlock");
+                                                    break;
+                                                case "ArmorInvCorner2Base":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallHeavyBlock");
+                                                    break;
+                                                case "ArmorInvCorner2Tip":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallHeavyBlock");
+                                                    break;
+                                                case "ArmorHalfSlopeCornerInverted":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorHalfSlopeInverted":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSlopeTransitionBase":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSlopeTransition":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSlopeTransitionTip":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSlopeTransitionBaseMirrored":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSlopeTransitionMirrored":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorSlopeTransitionTipMirrored":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorHalfSlopeCorner":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorHalfCorner":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
+                                                    break;
+                                                case "ArmorHalfSlopedCorner":
+                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockHeavy");
                                                     break;
                                                 default:
                                                     throw new ArgumentException($"Unhandled combination group1 case:{group1}, group2:{group2}, group3:{group3}");
@@ -1278,32 +1356,13 @@ namespace PartSwapperGUI.PartSwapper2024
                                     switch (group2)
                                     {
                                         case "BlockHeavy":
-                                            switch (group3)
-                                            {
-                                                case "ArmorBlock":
-                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockArmor");
-                                                    break;
-                                                case "ArmorSlope":
-                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockArmor");
-                                                    break;
-                                                case "ArmorCorner":
-                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockArmor");
-                                                    break;
-                                                case "ArmorCornerInv":
-                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockArmor");
-                                                    break;
-                                                case "ArmorCornerSquareInverted":
-                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockArmor");
-                                                    break;
-                                                case "ArmorSquareSlopedCornerBase":
-                                                    partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlockArmor");
-                                                    break;
-                                                default:
-                                                    throw new ArgumentException($"Unhandled combination group1 case:{group1}, group2:{group2}, group3:{group3}");
-                                            }
+                                            partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlock");
+                                            break;
+                                        case "HeavyBlock":
+                                            partNameReplacementIterator = Regex.Replace(partNameReplacementIterator, (group1 + group2), "SmallBlock");
                                             break;
                                         default:
-                                            throw new ArgumentException($"Unhandled combination group1 case:{group1}, group2:{group2}");
+                                            throw new ArgumentException($"Unhandled combination group1 case:{group1}, group2:{group2}, group3:{group3}");
                                     }
                                     break;
                                 case "":

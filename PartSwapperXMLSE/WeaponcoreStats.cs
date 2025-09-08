@@ -31,22 +31,23 @@ namespace PartSwapperXMLSE
 
         public bool vanillaDefinitions = false;
 
-        private readonly string _modsDirOptKey = "modsDir";
+        private string _modsDirOptKey = "modsDirKey";
         private ConfigOptions _config;
 
         public static ScottPlot.Color color1 = ScottPlot.Color.FromHex("#FF7700");
         public static ScottPlot.Color color3 = ScottPlot.Color.FromHex("#333333");
         public static ScottPlot.Color color2 = ScottPlot.Color.FromHex("#949494");
 
-        public WeaponcoreStats(ConfigOptions config)
+        public WeaponcoreStats(ConfigOptions config, string modsDirKey)
         {
             this._config = config;
+            this._modsDirOptKey = modsDirKey;
 
             LoadWCDefsViaModFolders(_config.GetOption(_modsDirOptKey));
         }
 
         // declaration string to vector3
-        public static Vector3 declStringToVector3(string declarationString)
+        public static Vector3 WCDefStringToVector3(string declarationString)
         {
             Vector3 result = new Vector3();
 
@@ -727,7 +728,7 @@ namespace PartSwapperXMLSE
 
                                                 if (madAES2.Left.ToString().Equals("Offset"))
                                                 {
-                                                    hardpointDef.hardwareDefinition.offset = declStringToVector3(madAES2.Right.ToString());
+                                                    hardpointDef.hardwareDefinition.offset = WCDefStringToVector3(madAES2.Right.ToString());
 
                                                 }
 
@@ -1079,7 +1080,7 @@ namespace PartSwapperXMLSE
 
                                                                     if (madAES3.Left.ToString().Equals("Offset"))
                                                                     {
-                                                                        particleDefIterator.offset = declStringToVector3(madAES3.Right.ToString());
+                                                                        particleDefIterator.offset = WCDefStringToVector3(madAES3.Right.ToString());
                                                                     }
 
                                                                     if (madAES3.Left.ToString().Equals("Extras"))
@@ -2036,7 +2037,6 @@ namespace PartSwapperXMLSE
                     if (node.Type.ToString().Equals("WeaponDefinition"))
                     {
                         WCWeaponDefinition weaponDefinition = new WCWeaponDefinition();
-
 
                         // To get the definitionName, we have to go the 'up' the tree first.
                         switch (node.Parent)

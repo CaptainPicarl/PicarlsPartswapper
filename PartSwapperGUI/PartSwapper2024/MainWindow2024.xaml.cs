@@ -973,6 +973,12 @@ namespace PartSwapperGUI.PartSwapper2024
             }
         }
 
+        private void OnViewWCStats_Click(object sender, RoutedEventArgs e)
+        {
+            WeaponcoreStatsWindow wcStatsWindow = new WeaponcoreStatsWindow(this._ConfigOptions,_SteamWorkshopModDirOptKey);
+            wcStatsWindow.Show();
+        }
+
         private void UITransparentRendererCheckBox_ValueChanged(object sender, RoutedEventArgs e)
         {
             

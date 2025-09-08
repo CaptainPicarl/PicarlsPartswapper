@@ -341,7 +341,7 @@ namespace PartSwapperGUI
 
         private void WeaponcoreStatsButton_Click(object sender, RoutedEventArgs e)
         {
-            WeaponcoreStatsWindow wcStatsWindow = new WeaponcoreStatsWindow(_config);
+            WeaponcoreStatsWindow wcStatsWindow = new WeaponcoreStatsWindow(this._config, modsDirOptKey);
             wcStatsWindow.Show();
         }
 

@@ -21,6 +21,7 @@ namespace PartSwapperXMLSE
         // Marker interface
 
     }
+
     public class particleDef : I_WCDefinition
     {
         public string name;
@@ -89,7 +90,7 @@ namespace PartSwapperXMLSE
         public TrajectoryDef? trajectoryDef;
         public ammoGraphicsDef? ammoGraphicsDefinition;
         public ammoAudioDef? ammoAudioDefinition;
-        
+
         public class objectsHitDefinition()
         {
             public float maxObjectsHit;
@@ -121,12 +122,6 @@ namespace PartSwapperXMLSE
             public string shape;
             public float diameter;
         }
-
-
-
-
-
-
 
         public class DamageScales()
         {
@@ -193,7 +188,6 @@ namespace PartSwapperXMLSE
             }
         }
 
-
         public class AreaOfDamageDef()
         {
             public class ByBlockHit()
@@ -225,7 +219,6 @@ namespace PartSwapperXMLSE
 
         }
 
-
         public class ewarDef()
         {
             public bool enable;
@@ -252,6 +245,7 @@ namespace PartSwapperXMLSE
                 public bool shooterFeelsForce;
             }
         }
+
         public class BeamDef()
         {
             public bool enable;
@@ -391,6 +385,7 @@ namespace PartSwapperXMLSE
                 public float delay;
             }
         }
+
         public class SmartsDef()
         {
             public float inaccuracy;
@@ -414,6 +409,11 @@ namespace PartSwapperXMLSE
             public float fieldTime;
             public bool cloak;
             public bool persist;
+        }
+
+        public override string ToString()
+        {
+            return this.ammoMagazine;
         }
 
     }
@@ -484,6 +484,7 @@ namespace PartSwapperXMLSE
                     this.ejectors = new List<string>();
                 }
             }
+
         }
         public class targetingDef : I_WCDefinition
         {
@@ -651,6 +652,11 @@ namespace PartSwapperXMLSE
 
             }
 
+        }
+
+        public override string ToString()
+        {
+            return this.definitionName;
         }
     }
     // VanillaAmmo/Weaponstats were created before I recognized I was not appropriately modeling WC definitions

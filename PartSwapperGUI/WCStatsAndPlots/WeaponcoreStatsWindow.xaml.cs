@@ -25,20 +25,20 @@ namespace PartSwapperGUI
         List<WpfPlot> _plots = new List<WpfPlot>();
         TabItem tabItemIter = new TabItem();
         WpfPlot wpfPlotIter = new WpfPlot();
-
-        public WeaponcoreStatsWindow(ConfigOptions config)
+        
+        public WeaponcoreStatsWindow(ConfigOptions config, string modsDirKey)
         {
             InitializeComponent();
 
             _config = config;
 
-            _weaponcoreStats = new WeaponcoreStats(_config);
-
+            _weaponcoreStats = new WeaponcoreStats(_config, modsDirKey);
 
             TabItem maxTargetsItem = new TabItem();
 
-            maxTargetsItem.Name = "MaxTargetsTabItem";
-            maxTargetsItem.Content = WCStatsAndPlots.WCStatsAndPlots.generateWeaponRangesScttPltWPF(WeaponcoreStats.wcDefinitions, WeaponcoreStats.color1, WeaponcoreStats.color2, WeaponcoreStats.color3);
+            maxTargetsItem.Name = "MaxWeaponRangeSctPlt";
+            maxTargetsItem.Header = "Max Weapon Range";
+            maxTargetsItem.Content = WCStatsAndPlots.WCStatsAndPlots.GenerateWpnRangeScttPlt(WeaponcoreStats.wcDefinitions, WeaponcoreStats.color1, WeaponcoreStats.color2, WeaponcoreStats.color3);
 
             StatsTabControl.Items.Add(maxTargetsItem);
         }
