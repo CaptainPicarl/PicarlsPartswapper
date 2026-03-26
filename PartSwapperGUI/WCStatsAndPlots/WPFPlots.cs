@@ -130,7 +130,8 @@ namespace PartSwapperGUI.WCStatsAndPlots
                         ticks[(int)xAxisMax - 1] = new Tick(xAxisMax, wcWepDef.definitionName);
 
                         // Use the new tick to determine whether or not it has the largest label size
-                        labelSize = wepPlot.Plot.Axes.Bottom.TickLabelStyle.Measure(ticks[(int)xAxisMax - 1].Label).Size;
+                        // TODO: Figure out what Paint.NewDisposablePaint() should be replaced with. I added it on 26MAR2026 just to get this to compile again.
+                        labelSize = wepPlot.Plot.Axes.Bottom.TickLabelStyle.Measure(ticks[(int)xAxisMax - 1].Label, Paint.NewDisposablePaint()).Size;
                         largestLabelWidth = Math.Max(largestLabelWidth, labelSize.Width);
 
                         //Bar Plot

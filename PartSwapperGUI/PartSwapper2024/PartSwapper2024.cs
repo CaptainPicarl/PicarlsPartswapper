@@ -835,6 +835,13 @@ namespace PartSwapperGUI.PartSwapper2024
                     isPanel = partNameIterator.Contains("Panel");
                     isBeam = partNameIterator.Contains("Beam");
 
+                    // Ignore these blocks.
+                    if (partNameIterator.Contains("AQD") || 
+                        partNameIterator.Contains("Conveyer"))
+                    {
+                        continue;
+                    }
+
                     // EXISTING LIGHT ARMOR
                     if (!isHeavyArmorBlock)
                     {
@@ -1188,6 +1195,13 @@ namespace PartSwapperGUI.PartSwapper2024
                     isHeavyArmor = partNameIterator.Contains("Heavy");
                     isPanel = partNameIterator.Contains("Panel");
                     isBeam = partNameIterator.Contains("Beam");
+
+                    // Ignore these blocks.
+                    if (partNameIterator.Contains("AQD") ||
+                        partNameIterator.Contains("Conveyer"))
+                    {
+                        continue;
+                    }
 
                     // EXISTING HEAVY ARMOR
                     if (isHeavyArmor)
